@@ -62,6 +62,10 @@ Offline check: `python scripts/prepare_sources.py configs/smoke.json && python -
 
 Unit tests: `python -m unittest discover tests`.
 
+## Architecture notes
+
+*Maintainer's observation, not a measured result.* Running image processing and video streaming as separate systems means maintaining parallel pipelines, for example S3 plus Lambda functions for images alongside a separate video service, each with its own storage, transformation logic, caching and monitoring. A single media pipeline that handles both lets one transformation URL syntax, one CDN configuration and one set of credentials cover images and video. This repository measures the video quality side of that trade-off; it does not measure operational overhead.
+
 ## Limitations
 
 - VMAF, PSNR and SSIM are objective proxies; they do not replace subjective testing.
