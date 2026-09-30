@@ -49,4 +49,6 @@ class LocalFFmpeg(Provider):
             run = subprocess.run(cmd, capture_output=True, text=True, cwd=workdir)
             if run.returncode != 0:
                 raise ProviderError(f"ffmpeg encode failed:\n{run.stderr[-1500:]}")
-        return out, {"command": " ".join(passes[-1])}
+        # Record the command with bare file names so results carry no local paths.
+        shown = [Path(a).name if os.path.isabs(a) else a for a in passes[-1]]
+        return out, {"command": " ".join(shown)}

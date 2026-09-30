@@ -1,0 +1,1802 @@
+{
+  "schema": "vqbench/result@1",
+  "run_id": "20260930T130107Z",
+  "started_utc": "2026-09-30T13:01:07.362614+00:00",
+  "finished_utc": "2026-09-30T13:20:50.710948+00:00",
+  "tool_version": "0.1.0",
+  "environment": {
+    "ffmpeg": "ffmpeg version 8.1.2-full_build-www.gyan.dev Copyright (c) 2000-2026 the FFmpeg developers",
+    "python": "3.11.9",
+    "platform": "Windows-10-10.0.26200-SP0"
+  },
+  "config_sha256": "b61dc0fe6f8d1c25ec5057b04eb3776add0ac39093ae87ac5b1c08c24372a1ca",
+  "vmaf_model": "hd",
+  "sources": [
+    {
+      "id": "sea_turtle_1080p",
+      "path": "sources/sea_turtle_1080p.mp4",
+      "sha256": "8f93f5ec1d44f26cf729f8b94cba12a37666e4ae5045b228abcf7e3aca1e7386",
+      "origin": "https://res.cloudinary.com/demo/video/upload/samples/sea-turtle.mp4"
+    },
+    {
+      "id": "bathroom_1080p",
+      "path": "sources/bathroom_1080p.mp4",
+      "sha256": "22e9b561dbeb05d6936736785b6c8fb540ebb71c6fb71a5d8b1575fddbd4e40c",
+      "origin": "https://res.cloudinary.com/demo/video/upload/docs/bathroom.mp4"
+    },
+    {
+      "id": "parrot_1080x1920",
+      "path": "sources/parrot_1080x1920.mp4",
+      "sha256": "8c7f74caea088935890115617e66f70ee72b5f45528b82e1346f2a0b801e1d2d",
+      "origin": "https://res.cloudinary.com/demo/video/upload/docs/parrot.mp4"
+    }
+  ],
+  "reference": {
+    "note": "lossless H.264 mezzanine; also the file uploaded to each service"
+  },
+  "providers": [
+    {
+      "provider": "cloudinary_h264_vbr",
+      "type": "Cloudinary",
+      "cloud_name": "demo",
+      "video_codec": "h264",
+      "bitrate_mode": "vbr",
+      "public_id_map": {
+        "sea_turtle_1080p": "samples/sea-turtle",
+        "bathroom_1080p": "docs/bathroom",
+        "parrot_1080x1920": "docs/parrot"
+      }
+    },
+    {
+      "provider": "cloudinary_h264_cbr",
+      "type": "Cloudinary",
+      "cloud_name": "demo",
+      "video_codec": "h264",
+      "bitrate_mode": "constant",
+      "public_id_map": {
+        "sea_turtle_1080p": "samples/sea-turtle",
+        "bathroom_1080p": "docs/bathroom",
+        "parrot_1080x1920": "docs/parrot"
+      }
+    },
+    {
+      "provider": "x264_medium_2pass",
+      "type": "LocalFFmpeg",
+      "codec": "h264",
+      "preset": "medium"
+    },
+    {
+      "provider": "x265_medium_2pass",
+      "type": "LocalFFmpeg",
+      "codec": "h265",
+      "preset": "medium"
+    }
+  ],
+  "bitrates_kbps": [
+    1000,
+    2500,
+    4500
+  ],
+  "summary": {
+    "cloudinary_h264_vbr": {
+      "1000": {
+        "mean_vmaf": 73.6573,
+        "mean_vmaf_harmonic": 72.6081,
+        "mean_vmaf_p5": 62.2317,
+        "mean_psnr_y": 39.2276,
+        "mean_ssim": 0.9781,
+        "mean_measured_kbps": 968.8667,
+        "sources": 3
+      },
+      "2500": {
+        "mean_vmaf": 87.5254,
+        "mean_vmaf_harmonic": 87.3923,
+        "mean_vmaf_p5": 82.7502,
+        "mean_psnr_y": 41.9246,
+        "mean_ssim": 0.9923,
+        "mean_measured_kbps": 1841.9333,
+        "sources": 3
+      },
+      "4500": {
+        "mean_vmaf": 88.959,
+        "mean_vmaf_harmonic": 88.8722,
+        "mean_vmaf_p5": 84.9282,
+        "mean_psnr_y": 42.2337,
+        "mean_ssim": 0.9932,
+        "mean_measured_kbps": 2035.1667,
+        "sources": 3
+      }
+    },
+    "cloudinary_h264_cbr": {
+      "1000": {
+        "mean_vmaf": 72.3927,
+        "mean_vmaf_harmonic": 71.5965,
+        "mean_vmaf_p5": 62.4287,
+        "mean_psnr_y": 38.9235,
+        "mean_ssim": 0.9771,
+        "mean_measured_kbps": 911.0333,
+        "sources": 3
+      },
+      "2500": {
+        "mean_vmaf": 89.0817,
+        "mean_vmaf_harmonic": 88.9455,
+        "mean_vmaf_p5": 83.9841,
+        "mean_psnr_y": 42.8641,
+        "mean_ssim": 0.9931,
+        "mean_measured_kbps": 2402.4333,
+        "sources": 3
+      },
+      "4500": {
+        "mean_vmaf": 94.3913,
+        "mean_vmaf_harmonic": 94.3273,
+        "mean_vmaf_p5": 90.6362,
+        "mean_psnr_y": 45.0075,
+        "mean_ssim": 0.9963,
+        "mean_measured_kbps": 4384.4333,
+        "sources": 3
+      }
+    },
+    "x264_medium_2pass": {
+      "1000": {
+        "mean_vmaf": 74.5835,
+        "mean_vmaf_harmonic": 74.1368,
+        "mean_vmaf_p5": 66.9054,
+        "mean_psnr_y": 39.4639,
+        "mean_ssim": 0.9813,
+        "mean_measured_kbps": 1021.6667,
+        "sources": 3
+      },
+      "2500": {
+        "mean_vmaf": 89.8367,
+        "mean_vmaf_harmonic": 89.7203,
+        "mean_vmaf_p5": 85.1085,
+        "mean_psnr_y": 43.1949,
+        "mean_ssim": 0.9936,
+        "mean_measured_kbps": 2541.5667,
+        "sources": 3
+      },
+      "4500": {
+        "mean_vmaf": 94.9835,
+        "mean_vmaf_harmonic": 94.9206,
+        "mean_vmaf_p5": 91.1237,
+        "mean_psnr_y": 45.7012,
+        "mean_ssim": 0.9966,
+        "mean_measured_kbps": 4531.6333,
+        "sources": 3
+      }
+    },
+    "x265_medium_2pass": {
+      "1000": {
+        "mean_vmaf": 86.7608,
+        "mean_vmaf_harmonic": 86.6142,
+        "mean_vmaf_p5": 81.912,
+        "mean_psnr_y": 42.3985,
+        "mean_ssim": 0.99,
+        "mean_measured_kbps": 996.6,
+        "sources": 3
+      },
+      "2500": {
+        "mean_vmaf": 94.4265,
+        "mean_vmaf_harmonic": 94.3529,
+        "mean_vmaf_p5": 90.7473,
+        "mean_psnr_y": 45.0091,
+        "mean_ssim": 0.995,
+        "mean_measured_kbps": 2491.3,
+        "sources": 3
+      },
+      "4500": {
+        "mean_vmaf": 97.0487,
+        "mean_vmaf_harmonic": 97.0125,
+        "mean_vmaf_p5": 94.1071,
+        "mean_psnr_y": 46.7153,
+        "mean_ssim": 0.9969,
+        "mean_measured_kbps": 4454.1667,
+        "sources": 3
+      }
+    }
+  },
+  "measurements": [
+    {
+      "provider": "cloudinary_h264_vbr",
+      "source": "sea_turtle_1080p",
+      "target_kbps": 1000,
+      "rendition": {
+        "width": 1920,
+        "height": 1080,
+        "fps": 29.97,
+        "duration": 15.215215,
+        "bitrate_kbps": 936.2,
+        "codec": "h264",
+        "pix_fmt": "yuv420p",
+        "frames": null,
+        "delivery_url": "https://res.cloudinary.com/demo/video/upload/vc_h264,br_1000k/samples/sea-turtle.mp4",
+        "public_id": "samples/sea-turtle"
+      },
+      "over_target": false,
+      "metrics": {
+        "vmaf": {
+          "mean": 75.4054,
+          "harmonic_mean": 74.8412,
+          "min": 57.1117,
+          "p1": 59.2041,
+          "p5": 63.3369,
+          "max": 89.8603
+        },
+        "psnr_y": {
+          "mean": 41.8563,
+          "harmonic_mean": 41.7639,
+          "min": 37.4156,
+          "p1": 37.7684,
+          "p5": 38.3009,
+          "max": 45.5902
+        },
+        "ssim": {
+          "mean": 0.9842,
+          "harmonic_mean": 0.9842,
+          "min": 0.9736,
+          "p1": 0.9748,
+          "p5": 0.9765,
+          "max": 0.9926
+        }
+      },
+      "frames_compared": 456
+    },
+    {
+      "provider": "cloudinary_h264_vbr",
+      "source": "sea_turtle_1080p",
+      "target_kbps": 2500,
+      "rendition": {
+        "width": 1920,
+        "height": 1080,
+        "fps": 29.97,
+        "duration": 15.215215,
+        "bitrate_kbps": 1885.8,
+        "codec": "h264",
+        "pix_fmt": "yuv420p",
+        "frames": 456,
+        "delivery_url": "https://res.cloudinary.com/demo/video/upload/vc_h264,br_2500k/samples/sea-turtle.mp4",
+        "public_id": "samples/sea-turtle"
+      },
+      "over_target": false,
+      "metrics": {
+        "vmaf": {
+          "mean": 85.3889,
+          "harmonic_mean": 85.3443,
+          "min": 80.7289,
+          "p1": 81.151,
+          "p5": 82.295,
+          "max": 92.0817
+        },
+        "psnr_y": {
+          "mean": 43.993,
+          "harmonic_mean": 43.9585,
+          "min": 41.2091,
+          "p1": 41.4238,
+          "p5": 41.809,
+          "max": 47.603
+        },
+        "ssim": {
+          "mean": 0.9903,
+          "harmonic_mean": 0.9903,
+          "min": 0.9848,
+          "p1": 0.9875,
+          "p5": 0.9887,
+          "max": 0.9956
+        }
+      },
+      "frames_compared": 456
+    },
+    {
+      "provider": "cloudinary_h264_vbr",
+      "source": "sea_turtle_1080p",
+      "target_kbps": 4500,
+      "rendition": {
+        "width": 1920,
+        "height": 1080,
+        "fps": 29.97,
+        "duration": 15.215215,
+        "bitrate_kbps": 1891.0,
+        "codec": "h264",
+        "pix_fmt": "yuv420p",
+        "frames": null,
+        "delivery_url": "https://res.cloudinary.com/demo/video/upload/vc_h264,br_4500k/samples/sea-turtle.mp4",
+        "public_id": "samples/sea-turtle"
+      },
+      "over_target": false,
+      "metrics": {
+        "vmaf": {
+          "mean": 85.4335,
+          "harmonic_mean": 85.3889,
+          "min": 80.7289,
+          "p1": 81.1956,
+          "p5": 82.3031,
+          "max": 92.0817
+        },
+        "psnr_y": {
+          "mean": 43.9993,
+          "harmonic_mean": 43.9643,
+          "min": 41.2091,
+          "p1": 41.4238,
+          "p5": 41.809,
+          "max": 47.603
+        },
+        "ssim": {
+          "mean": 0.9903,
+          "harmonic_mean": 0.9903,
+          "min": 0.9848,
+          "p1": 0.9875,
+          "p5": 0.9887,
+          "max": 0.9956
+        }
+      },
+      "frames_compared": 456
+    },
+    {
+      "provider": "cloudinary_h264_cbr",
+      "source": "sea_turtle_1080p",
+      "target_kbps": 1000,
+      "rendition": {
+        "width": 1920,
+        "height": 1080,
+        "fps": 29.97,
+        "duration": 15.215215,
+        "bitrate_kbps": 894.9,
+        "codec": "h264",
+        "pix_fmt": "yuv420p",
+        "frames": null,
+        "delivery_url": "https://res.cloudinary.com/demo/video/upload/vc_h264,br_1000k:constant/samples/sea-turtle.mp4",
+        "public_id": "samples/sea-turtle"
+      },
+      "over_target": false,
+      "metrics": {
+        "vmaf": {
+          "mean": 74.8407,
+          "harmonic_mean": 74.3352,
+          "min": 56.3858,
+          "p1": 59.2206,
+          "p5": 63.8134,
+          "max": 87.1477
+        },
+        "psnr_y": {
+          "mean": 41.7222,
+          "harmonic_mean": 41.6355,
+          "min": 37.355,
+          "p1": 37.7445,
+          "p5": 38.275,
+          "max": 45.6205
+        },
+        "ssim": {
+          "mean": 0.9838,
+          "harmonic_mean": 0.9838,
+          "min": 0.974,
+          "p1": 0.9748,
+          "p5": 0.9765,
+          "max": 0.9926
+        }
+      },
+      "frames_compared": 456
+    },
+    {
+      "provider": "cloudinary_h264_cbr",
+      "source": "sea_turtle_1080p",
+      "target_kbps": 2500,
+      "rendition": {
+        "width": 1920,
+        "height": 1080,
+        "fps": 29.97,
+        "duration": 15.215215,
+        "bitrate_kbps": 2445.1,
+        "codec": "h264",
+        "pix_fmt": "yuv420p",
+        "frames": null,
+        "delivery_url": "https://res.cloudinary.com/demo/video/upload/vc_h264,br_2500k:constant/samples/sea-turtle.mp4",
+        "public_id": "samples/sea-turtle"
+      },
+      "over_target": false,
+      "metrics": {
+        "vmaf": {
+          "mean": 87.2765,
+          "harmonic_mean": 87.2031,
+          "min": 79.7605,
+          "p1": 80.8987,
+          "p5": 82.7139,
+          "max": 93.4131
+        },
+        "psnr_y": {
+          "mean": 44.6024,
+          "harmonic_mean": 44.5476,
+          "min": 41.0086,
+          "p1": 41.2995,
+          "p5": 41.9009,
+          "max": 48.2688
+        },
+        "ssim": {
+          "mean": 0.9916,
+          "harmonic_mean": 0.9916,
+          "min": 0.9863,
+          "p1": 0.9885,
+          "p5": 0.9891,
+          "max": 0.9964
+        }
+      },
+      "frames_compared": 456
+    },
+    {
+      "provider": "cloudinary_h264_cbr",
+      "source": "sea_turtle_1080p",
+      "target_kbps": 4500,
+      "rendition": {
+        "width": 1920,
+        "height": 1080,
+        "fps": 29.97,
+        "duration": 15.215215,
+        "bitrate_kbps": 4499.2,
+        "codec": "h264",
+        "pix_fmt": "yuv420p",
+        "frames": null,
+        "delivery_url": "https://res.cloudinary.com/demo/video/upload/vc_h264,br_4500k:constant/samples/sea-turtle.mp4",
+        "public_id": "samples/sea-turtle"
+      },
+      "over_target": false,
+      "metrics": {
+        "vmaf": {
+          "mean": 91.2466,
+          "harmonic_mean": 91.2156,
+          "min": 87.8167,
+          "p1": 88.0415,
+          "p5": 88.7374,
+          "max": 96.7989
+        },
+        "psnr_y": {
+          "mean": 46.026,
+          "harmonic_mean": 45.9862,
+          "min": 42.9179,
+          "p1": 43.184,
+          "p5": 43.56,
+          "max": 51.1518
+        },
+        "ssim": {
+          "mean": 0.9945,
+          "harmonic_mean": 0.9945,
+          "min": 0.9911,
+          "p1": 0.9928,
+          "p5": 0.9931,
+          "max": 0.998
+        }
+      },
+      "frames_compared": 456
+    },
+    {
+      "provider": "x264_medium_2pass",
+      "source": "sea_turtle_1080p",
+      "target_kbps": 1000,
+      "rendition": {
+        "width": 1920,
+        "height": 1080,
+        "fps": 29.97,
+        "duration": 15.215215,
+        "bitrate_kbps": 1018.2,
+        "codec": "h264",
+        "pix_fmt": "yuv420p",
+        "frames": 456,
+        "command": "ffmpeg -hide_banner -nostdin -y -i sea_turtle_1080p.mp4 -an -c:v libx264 -profile:v high -preset medium -b:v 1000k -maxrate 1500k -bufsize 2000k -pix_fmt yuv420p -pass 2 -passlogfile x264_medium_2pass_sea_turtle_1080p_1000 x264_medium_2pass_sea_turtle_1080p_1000k.mp4"
+      },
+      "over_target": false,
+      "metrics": {
+        "vmaf": {
+          "mean": 75.6008,
+          "harmonic_mean": 75.2842,
+          "min": 63.9432,
+          "p1": 64.9507,
+          "p5": 67.5152,
+          "max": 88.5963
+        },
+        "psnr_y": {
+          "mean": 41.9387,
+          "harmonic_mean": 41.8725,
+          "min": 38.3253,
+          "p1": 38.6715,
+          "p5": 39.1058,
+          "max": 47.8726
+        },
+        "ssim": {
+          "mean": 0.9849,
+          "harmonic_mean": 0.9849,
+          "min": 0.9767,
+          "p1": 0.9786,
+          "p5": 0.9799,
+          "max": 0.9943
+        }
+      },
+      "frames_compared": 456
+    },
+    {
+      "provider": "x264_medium_2pass",
+      "source": "sea_turtle_1080p",
+      "target_kbps": 2500,
+      "rendition": {
+        "width": 1920,
+        "height": 1080,
+        "fps": 29.97,
+        "duration": 15.215215,
+        "bitrate_kbps": 2551.8,
+        "codec": "h264",
+        "pix_fmt": "yuv420p",
+        "frames": 456,
+        "command": "ffmpeg -hide_banner -nostdin -y -i sea_turtle_1080p.mp4 -an -c:v libx264 -profile:v high -preset medium -b:v 2500k -maxrate 3750k -bufsize 5000k -pix_fmt yuv420p -pass 2 -passlogfile x264_medium_2pass_sea_turtle_1080p_2500 x264_medium_2pass_sea_turtle_1080p_2500k.mp4"
+      },
+      "over_target": false,
+      "metrics": {
+        "vmaf": {
+          "mean": 87.1503,
+          "harmonic_mean": 87.0784,
+          "min": 81.395,
+          "p1": 82.0293,
+          "p5": 83.2606,
+          "max": 93.5411
+        },
+        "psnr_y": {
+          "mean": 44.5993,
+          "harmonic_mean": 44.5582,
+          "min": 41.7618,
+          "p1": 42.0485,
+          "p5": 42.4333,
+          "max": 50.7294
+        },
+        "ssim": {
+          "mean": 0.9917,
+          "harmonic_mean": 0.9917,
+          "min": 0.985,
+          "p1": 0.9882,
+          "p5": 0.9892,
+          "max": 0.9976
+        }
+      },
+      "frames_compared": 456
+    },
+    {
+      "provider": "x264_medium_2pass",
+      "source": "sea_turtle_1080p",
+      "target_kbps": 4500,
+      "rendition": {
+        "width": 1920,
+        "height": 1080,
+        "fps": 29.97,
+        "duration": 15.215215,
+        "bitrate_kbps": 4558.1,
+        "codec": "h264",
+        "pix_fmt": "yuv420p",
+        "frames": 456,
+        "command": "ffmpeg -hide_banner -nostdin -y -i sea_turtle_1080p.mp4 -an -c:v libx264 -profile:v high -preset medium -b:v 4500k -maxrate 6750k -bufsize 9000k -pix_fmt yuv420p -pass 2 -passlogfile x264_medium_2pass_sea_turtle_1080p_4500 x264_medium_2pass_sea_turtle_1080p_4500k.mp4"
+      },
+      "over_target": false,
+      "metrics": {
+        "vmaf": {
+          "mean": 91.1951,
+          "harmonic_mean": 91.1609,
+          "min": 87.2599,
+          "p1": 88.1117,
+          "p5": 88.6475,
+          "max": 96.126
+        },
+        "psnr_y": {
+          "mean": 46.0445,
+          "harmonic_mean": 46.0094,
+          "min": 43.4117,
+          "p1": 43.6838,
+          "p5": 43.89,
+          "max": 52.0722
+        },
+        "ssim": {
+          "mean": 0.9945,
+          "harmonic_mean": 0.9945,
+          "min": 0.989,
+          "p1": 0.9919,
+          "p5": 0.9929,
+          "max": 0.9983
+        }
+      },
+      "frames_compared": 456
+    },
+    {
+      "provider": "x265_medium_2pass",
+      "source": "sea_turtle_1080p",
+      "target_kbps": 1000,
+      "rendition": {
+        "width": 1920,
+        "height": 1080,
+        "fps": 29.97,
+        "duration": 15.215215,
+        "bitrate_kbps": 1007.6,
+        "codec": "hevc",
+        "pix_fmt": "yuv420p",
+        "frames": 456,
+        "command": "ffmpeg -hide_banner -nostdin -y -i sea_turtle_1080p.mp4 -an -c:v libx265 -tag:v hvc1 -preset medium -b:v 1000k -maxrate 1500k -bufsize 2000k -pix_fmt yuv420p -x265-params pass=2:stats=x265_medium_2pass_sea_turtle_1080p_1000.log x265_medium_2pass_sea_turtle_1080p_1000k.mp4"
+      },
+      "over_target": false,
+      "metrics": {
+        "vmaf": {
+          "mean": 87.7425,
+          "harmonic_mean": 87.6816,
+          "min": 83.4824,
+          "p1": 84.1467,
+          "p5": 84.775,
+          "max": 96.2066
+        },
+        "psnr_y": {
+          "mean": 44.4621,
+          "harmonic_mean": 44.438,
+          "min": 42.2121,
+          "p1": 42.3513,
+          "p5": 42.6657,
+          "max": 47.873
+        },
+        "ssim": {
+          "mean": 0.9892,
+          "harmonic_mean": 0.9892,
+          "min": 0.9841,
+          "p1": 0.9857,
+          "p5": 0.9869,
+          "max": 0.9954
+        }
+      },
+      "frames_compared": 456
+    },
+    {
+      "provider": "x265_medium_2pass",
+      "source": "sea_turtle_1080p",
+      "target_kbps": 2500,
+      "rendition": {
+        "width": 1920,
+        "height": 1080,
+        "fps": 29.97,
+        "duration": 15.215215,
+        "bitrate_kbps": 2506.6,
+        "codec": "hevc",
+        "pix_fmt": "yuv420p",
+        "frames": 456,
+        "command": "ffmpeg -hide_banner -nostdin -y -i sea_turtle_1080p.mp4 -an -c:v libx265 -tag:v hvc1 -preset medium -b:v 2500k -maxrate 3750k -bufsize 5000k -pix_fmt yuv420p -x265-params pass=2:stats=x265_medium_2pass_sea_turtle_1080p_2500.log x265_medium_2pass_sea_turtle_1080p_2500k.mp4"
+      },
+      "over_target": false,
+      "metrics": {
+        "vmaf": {
+          "mean": 93.2499,
+          "harmonic_mean": 93.2263,
+          "min": 90.6693,
+          "p1": 90.8906,
+          "p5": 91.2513,
+          "max": 99.2979
+        },
+        "psnr_y": {
+          "mean": 46.3485,
+          "harmonic_mean": 46.329,
+          "min": 44.2357,
+          "p1": 44.3588,
+          "p5": 44.6851,
+          "max": 49.8225
+        },
+        "ssim": {
+          "mean": 0.9931,
+          "harmonic_mean": 0.9931,
+          "min": 0.9895,
+          "p1": 0.9907,
+          "p5": 0.9914,
+          "max": 0.9978
+        }
+      },
+      "frames_compared": 456
+    },
+    {
+      "provider": "x265_medium_2pass",
+      "source": "sea_turtle_1080p",
+      "target_kbps": 4500,
+      "rendition": {
+        "width": 1920,
+        "height": 1080,
+        "fps": 29.97,
+        "duration": 15.215215,
+        "bitrate_kbps": 4491.0,
+        "codec": "hevc",
+        "pix_fmt": "yuv420p",
+        "frames": 456,
+        "command": "ffmpeg -hide_banner -nostdin -y -i sea_turtle_1080p.mp4 -an -c:v libx265 -tag:v hvc1 -preset medium -b:v 4500k -maxrate 6750k -bufsize 9000k -pix_fmt yuv420p -x265-params pass=2:stats=x265_medium_2pass_sea_turtle_1080p_4500.log x265_medium_2pass_sea_turtle_1080p_4500k.mp4"
+      },
+      "over_target": false,
+      "metrics": {
+        "vmaf": {
+          "mean": 95.3978,
+          "harmonic_mean": 95.3817,
+          "min": 93.2177,
+          "p1": 93.3348,
+          "p5": 93.6543,
+          "max": 100.0
+        },
+        "psnr_y": {
+          "mean": 47.5821,
+          "harmonic_mean": 47.5639,
+          "min": 45.506,
+          "p1": 45.6712,
+          "p5": 45.9644,
+          "max": 51.1756
+        },
+        "ssim": {
+          "mean": 0.9952,
+          "harmonic_mean": 0.9952,
+          "min": 0.9928,
+          "p1": 0.9935,
+          "p5": 0.9939,
+          "max": 0.9987
+        }
+      },
+      "frames_compared": 456
+    },
+    {
+      "provider": "cloudinary_h264_vbr",
+      "source": "bathroom_1080p",
+      "target_kbps": 1000,
+      "rendition": {
+        "width": 1920,
+        "height": 1080,
+        "fps": 29.97002997002997,
+        "duration": 12.278933,
+        "bitrate_kbps": 944.5,
+        "codec": "h264",
+        "pix_fmt": "yuv420p",
+        "frames": null,
+        "delivery_url": "https://res.cloudinary.com/demo/video/upload/vc_h264,br_1000k/docs/bathroom.mp4",
+        "public_id": "docs/bathroom"
+      },
+      "over_target": false,
+      "metrics": {
+        "vmaf": {
+          "mean": 90.4993,
+          "harmonic_mean": 90.4242,
+          "min": 83.5048,
+          "p1": 83.6486,
+          "p5": 86.644,
+          "max": 100.0
+        },
+        "psnr_y": {
+          "mean": 41.2416,
+          "harmonic_mean": 41.2181,
+          "min": 39.0842,
+          "p1": 39.5327,
+          "p5": 40.1595,
+          "max": 60.0
+        },
+        "ssim": {
+          "mean": 0.9964,
+          "harmonic_mean": 0.9964,
+          "min": 0.9933,
+          "p1": 0.994,
+          "p5": 0.9954,
+          "max": 1.0
+        }
+      },
+      "frames_compared": 368
+    },
+    {
+      "provider": "cloudinary_h264_vbr",
+      "source": "bathroom_1080p",
+      "target_kbps": 2500,
+      "rendition": {
+        "width": 1920,
+        "height": 1080,
+        "fps": 29.97002997002997,
+        "duration": 12.278933,
+        "bitrate_kbps": 1156.6,
+        "codec": "h264",
+        "pix_fmt": "yuv420p",
+        "frames": 368,
+        "delivery_url": "https://res.cloudinary.com/demo/video/upload/vc_h264,br_2500k/docs/bathroom.mp4",
+        "public_id": "docs/bathroom"
+      },
+      "over_target": false,
+      "metrics": {
+        "vmaf": {
+          "mean": 92.1341,
+          "harmonic_mean": 92.0676,
+          "min": 86.4124,
+          "p1": 87.0979,
+          "p5": 88.8326,
+          "max": 100.0
+        },
+        "psnr_y": {
+          "mean": 42.0801,
+          "harmonic_mean": 42.0616,
+          "min": 40.461,
+          "p1": 40.6217,
+          "p5": 41.3899,
+          "max": 60.0
+        },
+        "ssim": {
+          "mean": 0.9971,
+          "harmonic_mean": 0.9971,
+          "min": 0.996,
+          "p1": 0.9961,
+          "p5": 0.9967,
+          "max": 1.0
+        }
+      },
+      "frames_compared": 368
+    },
+    {
+      "provider": "cloudinary_h264_vbr",
+      "source": "bathroom_1080p",
+      "target_kbps": 4500,
+      "rendition": {
+        "width": 1920,
+        "height": 1080,
+        "fps": 29.97002997002997,
+        "duration": 12.278933,
+        "bitrate_kbps": 1156.6,
+        "codec": "h264",
+        "pix_fmt": "yuv420p",
+        "frames": null,
+        "delivery_url": "https://res.cloudinary.com/demo/video/upload/vc_h264,br_4500k/docs/bathroom.mp4",
+        "public_id": "docs/bathroom"
+      },
+      "over_target": false,
+      "metrics": {
+        "vmaf": {
+          "mean": 92.1341,
+          "harmonic_mean": 92.0676,
+          "min": 86.4124,
+          "p1": 87.0979,
+          "p5": 88.8326,
+          "max": 100.0
+        },
+        "psnr_y": {
+          "mean": 42.0801,
+          "harmonic_mean": 42.0616,
+          "min": 40.461,
+          "p1": 40.6217,
+          "p5": 41.3899,
+          "max": 60.0
+        },
+        "ssim": {
+          "mean": 0.9971,
+          "harmonic_mean": 0.9971,
+          "min": 0.996,
+          "p1": 0.9961,
+          "p5": 0.9967,
+          "max": 1.0
+        }
+      },
+      "frames_compared": 368
+    },
+    {
+      "provider": "cloudinary_h264_cbr",
+      "source": "bathroom_1080p",
+      "target_kbps": 1000,
+      "rendition": {
+        "width": 1920,
+        "height": 1080,
+        "fps": 29.97002997002997,
+        "duration": 12.278933,
+        "bitrate_kbps": 861.6,
+        "codec": "h264",
+        "pix_fmt": "yuv420p",
+        "frames": null,
+        "delivery_url": "https://res.cloudinary.com/demo/video/upload/vc_h264,br_1000k:constant/docs/bathroom.mp4",
+        "public_id": "docs/bathroom"
+      },
+      "over_target": false,
+      "metrics": {
+        "vmaf": {
+          "mean": 89.5501,
+          "harmonic_mean": 89.4647,
+          "min": 80.5822,
+          "p1": 81.5921,
+          "p5": 85.152,
+          "max": 100.0
+        },
+        "psnr_y": {
+          "mean": 40.8174,
+          "harmonic_mean": 40.7897,
+          "min": 38.1689,
+          "p1": 38.6414,
+          "p5": 39.3777,
+          "max": 60.0
+        },
+        "ssim": {
+          "mean": 0.996,
+          "harmonic_mean": 0.996,
+          "min": 0.9918,
+          "p1": 0.9927,
+          "p5": 0.9939,
+          "max": 1.0
+        }
+      },
+      "frames_compared": 368
+    },
+    {
+      "provider": "cloudinary_h264_cbr",
+      "source": "bathroom_1080p",
+      "target_kbps": 2500,
+      "rendition": {
+        "width": 1920,
+        "height": 1080,
+        "fps": 29.97002997002997,
+        "duration": 12.278933,
+        "bitrate_kbps": 2315.5,
+        "codec": "h264",
+        "pix_fmt": "yuv420p",
+        "frames": null,
+        "delivery_url": "https://res.cloudinary.com/demo/video/upload/vc_h264,br_2500k:constant/docs/bathroom.mp4",
+        "public_id": "docs/bathroom"
+      },
+      "over_target": false,
+      "metrics": {
+        "vmaf": {
+          "mean": 95.5557,
+          "harmonic_mean": 95.4918,
+          "min": 89.9891,
+          "p1": 91.1833,
+          "p5": 92.1378,
+          "max": 100.0
+        },
+        "psnr_y": {
+          "mean": 44.4148,
+          "harmonic_mean": 44.3967,
+          "min": 42.4701,
+          "p1": 42.7325,
+          "p5": 43.4041,
+          "max": 60.0
+        },
+        "ssim": {
+          "mean": 0.9985,
+          "harmonic_mean": 0.9985,
+          "min": 0.9972,
+          "p1": 0.9975,
+          "p5": 0.998,
+          "max": 1.0
+        }
+      },
+      "frames_compared": 368
+    },
+    {
+      "provider": "cloudinary_h264_cbr",
+      "source": "bathroom_1080p",
+      "target_kbps": 4500,
+      "rendition": {
+        "width": 1920,
+        "height": 1080,
+        "fps": 29.97002997002997,
+        "duration": 12.278933,
+        "bitrate_kbps": 4237.1,
+        "codec": "h264",
+        "pix_fmt": "yuv420p",
+        "frames": null,
+        "delivery_url": "https://res.cloudinary.com/demo/video/upload/vc_h264,br_4500k:constant/docs/bathroom.mp4",
+        "public_id": "docs/bathroom"
+      },
+      "over_target": false,
+      "metrics": {
+        "vmaf": {
+          "mean": 97.3333,
+          "harmonic_mean": 97.2806,
+          "min": 92.9376,
+          "p1": 93.2815,
+          "p5": 94.0813,
+          "max": 100.0
+        },
+        "psnr_y": {
+          "mean": 46.7268,
+          "harmonic_mean": 46.7071,
+          "min": 44.4084,
+          "p1": 44.5763,
+          "p5": 45.3476,
+          "max": 60.0
+        },
+        "ssim": {
+          "mean": 0.9992,
+          "harmonic_mean": 0.9992,
+          "min": 0.9987,
+          "p1": 0.9988,
+          "p5": 0.999,
+          "max": 1.0
+        }
+      },
+      "frames_compared": 368
+    },
+    {
+      "provider": "x264_medium_2pass",
+      "source": "bathroom_1080p",
+      "target_kbps": 1000,
+      "rendition": {
+        "width": 1920,
+        "height": 1080,
+        "fps": 29.97002997002997,
+        "duration": 12.278933,
+        "bitrate_kbps": 980.7,
+        "codec": "h264",
+        "pix_fmt": "yuv420p",
+        "frames": 368,
+        "command": "ffmpeg -hide_banner -nostdin -y -i bathroom_1080p.mp4 -an -c:v libx264 -profile:v high -preset medium -b:v 1000k -maxrate 1500k -bufsize 2000k -pix_fmt yuv420p -pass 2 -passlogfile x264_medium_2pass_bathroom_1080p_1000 x264_medium_2pass_bathroom_1080p_1000k.mp4"
+      },
+      "over_target": false,
+      "metrics": {
+        "vmaf": {
+          "mean": 90.9303,
+          "harmonic_mean": 90.8493,
+          "min": 85.4117,
+          "p1": 85.5586,
+          "p5": 86.9406,
+          "max": 100.0
+        },
+        "psnr_y": {
+          "mean": 41.5577,
+          "harmonic_mean": 41.5283,
+          "min": 39.9597,
+          "p1": 40.1884,
+          "p5": 40.5265,
+          "max": 60.0
+        },
+        "ssim": {
+          "mean": 0.9967,
+          "harmonic_mean": 0.9967,
+          "min": 0.9954,
+          "p1": 0.9956,
+          "p5": 0.996,
+          "max": 1.0
+        }
+      },
+      "frames_compared": 368
+    },
+    {
+      "provider": "x264_medium_2pass",
+      "source": "bathroom_1080p",
+      "target_kbps": 2500,
+      "rendition": {
+        "width": 1920,
+        "height": 1080,
+        "fps": 29.97002997002997,
+        "duration": 12.278933,
+        "bitrate_kbps": 2488.2,
+        "codec": "h264",
+        "pix_fmt": "yuv420p",
+        "frames": 368,
+        "command": "ffmpeg -hide_banner -nostdin -y -i bathroom_1080p.mp4 -an -c:v libx264 -profile:v high -preset medium -b:v 2500k -maxrate 3750k -bufsize 5000k -pix_fmt yuv420p -pass 2 -passlogfile x264_medium_2pass_bathroom_1080p_2500 x264_medium_2pass_bathroom_1080p_2500k.mp4"
+      },
+      "over_target": false,
+      "metrics": {
+        "vmaf": {
+          "mean": 96.1711,
+          "harmonic_mean": 96.1036,
+          "min": 91.671,
+          "p1": 91.8017,
+          "p5": 92.5616,
+          "max": 100.0
+        },
+        "psnr_y": {
+          "mean": 45.0461,
+          "harmonic_mean": 45.02,
+          "min": 42.9126,
+          "p1": 43.0354,
+          "p5": 43.6641,
+          "max": 60.0
+        },
+        "ssim": {
+          "mean": 0.9987,
+          "harmonic_mean": 0.9987,
+          "min": 0.9979,
+          "p1": 0.998,
+          "p5": 0.9982,
+          "max": 1.0
+        }
+      },
+      "frames_compared": 368
+    },
+    {
+      "provider": "x264_medium_2pass",
+      "source": "bathroom_1080p",
+      "target_kbps": 4500,
+      "rendition": {
+        "width": 1920,
+        "height": 1080,
+        "fps": 29.97002997002997,
+        "duration": 12.278933,
+        "bitrate_kbps": 4441.1,
+        "codec": "h264",
+        "pix_fmt": "yuv420p",
+        "frames": 368,
+        "command": "ffmpeg -hide_banner -nostdin -y -i bathroom_1080p.mp4 -an -c:v libx264 -profile:v high -preset medium -b:v 4500k -maxrate 6750k -bufsize 9000k -pix_fmt yuv420p -pass 2 -passlogfile x264_medium_2pass_bathroom_1080p_4500 x264_medium_2pass_bathroom_1080p_4500k.mp4"
+      },
+      "over_target": false,
+      "metrics": {
+        "vmaf": {
+          "mean": 97.7798,
+          "harmonic_mean": 97.7361,
+          "min": 93.5467,
+          "p1": 93.6584,
+          "p5": 94.6712,
+          "max": 100.0
+        },
+        "psnr_y": {
+          "mean": 48.1649,
+          "harmonic_mean": 48.1258,
+          "min": 44.6828,
+          "p1": 44.854,
+          "p5": 45.7648,
+          "max": 60.0
+        },
+        "ssim": {
+          "mean": 0.9994,
+          "harmonic_mean": 0.9994,
+          "min": 0.9988,
+          "p1": 0.9989,
+          "p5": 0.9991,
+          "max": 1.0
+        }
+      },
+      "frames_compared": 368
+    },
+    {
+      "provider": "x265_medium_2pass",
+      "source": "bathroom_1080p",
+      "target_kbps": 1000,
+      "rendition": {
+        "width": 1920,
+        "height": 1080,
+        "fps": 29.97002997002997,
+        "duration": 12.278933,
+        "bitrate_kbps": 997.7,
+        "codec": "hevc",
+        "pix_fmt": "yuv420p",
+        "frames": 368,
+        "command": "ffmpeg -hide_banner -nostdin -y -i bathroom_1080p.mp4 -an -c:v libx265 -tag:v hvc1 -preset medium -b:v 1000k -maxrate 1500k -bufsize 2000k -pix_fmt yuv420p -x265-params pass=2:stats=x265_medium_2pass_bathroom_1080p_1000.log x265_medium_2pass_bathroom_1080p_1000k.mp4"
+      },
+      "over_target": false,
+      "metrics": {
+        "vmaf": {
+          "mean": 95.6138,
+          "harmonic_mean": 95.5473,
+          "min": 90.7236,
+          "p1": 91.1759,
+          "p5": 91.781,
+          "max": 100.0
+        },
+        "psnr_y": {
+          "mean": 44.4402,
+          "harmonic_mean": 44.4199,
+          "min": 42.5633,
+          "p1": 42.7427,
+          "p5": 43.3642,
+          "max": 60.0
+        },
+        "ssim": {
+          "mean": 0.9976,
+          "harmonic_mean": 0.9976,
+          "min": 0.9968,
+          "p1": 0.9969,
+          "p5": 0.9972,
+          "max": 1.0
+        }
+      },
+      "frames_compared": 368
+    },
+    {
+      "provider": "x265_medium_2pass",
+      "source": "bathroom_1080p",
+      "target_kbps": 2500,
+      "rendition": {
+        "width": 1920,
+        "height": 1080,
+        "fps": 29.97002997002997,
+        "duration": 12.278933,
+        "bitrate_kbps": 2493.6,
+        "codec": "hevc",
+        "pix_fmt": "yuv420p",
+        "frames": 368,
+        "command": "ffmpeg -hide_banner -nostdin -y -i bathroom_1080p.mp4 -an -c:v libx265 -tag:v hvc1 -preset medium -b:v 2500k -maxrate 3750k -bufsize 5000k -pix_fmt yuv420p -x265-params pass=2:stats=x265_medium_2pass_bathroom_1080p_2500.log x265_medium_2pass_bathroom_1080p_2500k.mp4"
+      },
+      "over_target": false,
+      "metrics": {
+        "vmaf": {
+          "mean": 97.3979,
+          "harmonic_mean": 97.3451,
+          "min": 93.0906,
+          "p1": 93.2159,
+          "p5": 93.9891,
+          "max": 100.0
+        },
+        "psnr_y": {
+          "mean": 46.8813,
+          "harmonic_mean": 46.8564,
+          "min": 44.3613,
+          "p1": 44.4473,
+          "p5": 45.3616,
+          "max": 60.0
+        },
+        "ssim": {
+          "mean": 0.9986,
+          "harmonic_mean": 0.9986,
+          "min": 0.9979,
+          "p1": 0.998,
+          "p5": 0.9981,
+          "max": 1.0
+        }
+      },
+      "frames_compared": 368
+    },
+    {
+      "provider": "x265_medium_2pass",
+      "source": "bathroom_1080p",
+      "target_kbps": 4500,
+      "rendition": {
+        "width": 1920,
+        "height": 1080,
+        "fps": 29.97002997002997,
+        "duration": 12.278933,
+        "bitrate_kbps": 4442.2,
+        "codec": "hevc",
+        "pix_fmt": "yuv420p",
+        "frames": 368,
+        "command": "ffmpeg -hide_banner -nostdin -y -i bathroom_1080p.mp4 -an -c:v libx265 -tag:v hvc1 -preset medium -b:v 4500k -maxrate 6750k -bufsize 9000k -pix_fmt yuv420p -x265-params pass=2:stats=x265_medium_2pass_bathroom_1080p_4500.log x265_medium_2pass_bathroom_1080p_4500k.mp4"
+      },
+      "over_target": false,
+      "metrics": {
+        "vmaf": {
+          "mean": 97.9597,
+          "harmonic_mean": 97.9212,
+          "min": 93.9333,
+          "p1": 94.2266,
+          "p5": 95.0533,
+          "max": 100.0
+        },
+        "psnr_y": {
+          "mean": 48.5322,
+          "harmonic_mean": 48.5046,
+          "min": 45.5962,
+          "p1": 45.6937,
+          "p5": 46.9189,
+          "max": 60.0
+        },
+        "ssim": {
+          "mean": 0.999,
+          "harmonic_mean": 0.999,
+          "min": 0.9983,
+          "p1": 0.9984,
+          "p5": 0.9986,
+          "max": 1.0
+        }
+      },
+      "frames_compared": 368
+    },
+    {
+      "provider": "cloudinary_h264_vbr",
+      "source": "parrot_1080x1920",
+      "target_kbps": 1000,
+      "rendition": {
+        "width": 1080,
+        "height": 1920,
+        "fps": 29.97002997002997,
+        "duration": 11.868889,
+        "bitrate_kbps": 1025.9,
+        "codec": "h264",
+        "pix_fmt": "yuv420p",
+        "frames": null,
+        "delivery_url": "https://res.cloudinary.com/demo/video/upload/vc_h264,br_1000k/docs/parrot.mp4",
+        "public_id": "docs/parrot"
+      },
+      "over_target": false,
+      "metrics": {
+        "vmaf": {
+          "mean": 55.0672,
+          "harmonic_mean": 52.5588,
+          "min": 32.4742,
+          "p1": 34.4409,
+          "p5": 36.7142,
+          "max": 81.929
+        },
+        "psnr_y": {
+          "mean": 34.5849,
+          "harmonic_mean": 34.4426,
+          "min": 31.1904,
+          "p1": 31.2531,
+          "p5": 31.4966,
+          "max": 40.4267
+        },
+        "ssim": {
+          "mean": 0.9538,
+          "harmonic_mean": 0.9535,
+          "min": 0.9003,
+          "p1": 0.9062,
+          "p5": 0.9133,
+          "max": 0.991
+        }
+      },
+      "frames_compared": 352
+    },
+    {
+      "provider": "cloudinary_h264_vbr",
+      "source": "parrot_1080x1920",
+      "target_kbps": 2500,
+      "rendition": {
+        "width": 1080,
+        "height": 1920,
+        "fps": 29.97002997002997,
+        "duration": 11.776009,
+        "bitrate_kbps": 2483.4,
+        "codec": "h264",
+        "pix_fmt": "yuv420p",
+        "frames": 352,
+        "delivery_url": "https://res.cloudinary.com/demo/video/upload/vc_h264,br_2500k/docs/parrot.mp4",
+        "public_id": "docs/parrot"
+      },
+      "over_target": false,
+      "metrics": {
+        "vmaf": {
+          "mean": 85.0531,
+          "harmonic_mean": 84.7649,
+          "min": 74.2984,
+          "p1": 75.3536,
+          "p5": 77.1229,
+          "max": 100.0
+        },
+        "psnr_y": {
+          "mean": 39.7007,
+          "harmonic_mean": 39.6531,
+          "min": 37.0319,
+          "p1": 37.2824,
+          "p5": 37.6418,
+          "max": 42.7624
+        },
+        "ssim": {
+          "mean": 0.9895,
+          "harmonic_mean": 0.9895,
+          "min": 0.9784,
+          "p1": 0.9803,
+          "p5": 0.9823,
+          "max": 0.9951
+        }
+      },
+      "frames_compared": 352
+    },
+    {
+      "provider": "cloudinary_h264_vbr",
+      "source": "parrot_1080x1920",
+      "target_kbps": 4500,
+      "rendition": {
+        "width": 1080,
+        "height": 1920,
+        "fps": 29.97002997002997,
+        "duration": 11.868889,
+        "bitrate_kbps": 3057.9,
+        "codec": "h264",
+        "pix_fmt": "yuv420p",
+        "frames": null,
+        "delivery_url": "https://res.cloudinary.com/demo/video/upload/vc_h264,br_4500k/docs/parrot.mp4",
+        "public_id": "docs/parrot"
+      },
+      "over_target": false,
+      "metrics": {
+        "vmaf": {
+          "mean": 89.3095,
+          "harmonic_mean": 89.16,
+          "min": 80.9773,
+          "p1": 81.9227,
+          "p5": 83.6489,
+          "max": 100.0
+        },
+        "psnr_y": {
+          "mean": 40.6216,
+          "harmonic_mean": 40.6014,
+          "min": 37.9489,
+          "p1": 38.5759,
+          "p5": 39.0659,
+          "max": 43.2514
+        },
+        "ssim": {
+          "mean": 0.9923,
+          "harmonic_mean": 0.9923,
+          "min": 0.9859,
+          "p1": 0.9868,
+          "p5": 0.9886,
+          "max": 0.9967
+        }
+      },
+      "frames_compared": 352
+    },
+    {
+      "provider": "cloudinary_h264_cbr",
+      "source": "parrot_1080x1920",
+      "target_kbps": 1000,
+      "rendition": {
+        "width": 1080,
+        "height": 1920,
+        "fps": 29.97002997002997,
+        "duration": 11.868889,
+        "bitrate_kbps": 976.6,
+        "codec": "h264",
+        "pix_fmt": "yuv420p",
+        "frames": null,
+        "delivery_url": "https://res.cloudinary.com/demo/video/upload/vc_h264,br_1000k:constant/docs/parrot.mp4",
+        "public_id": "docs/parrot"
+      },
+      "over_target": false,
+      "metrics": {
+        "vmaf": {
+          "mean": 52.7872,
+          "harmonic_mean": 50.9895,
+          "min": 35.5574,
+          "p1": 36.9999,
+          "p5": 38.3207,
+          "max": 79.2023
+        },
+        "psnr_y": {
+          "mean": 34.231,
+          "harmonic_mean": 34.131,
+          "min": 31.3555,
+          "p1": 31.4831,
+          "p5": 31.7642,
+          "max": 39.9506
+        },
+        "ssim": {
+          "mean": 0.9516,
+          "harmonic_mean": 0.9514,
+          "min": 0.9097,
+          "p1": 0.9119,
+          "p5": 0.9177,
+          "max": 0.9891
+        }
+      },
+      "frames_compared": 352
+    },
+    {
+      "provider": "cloudinary_h264_cbr",
+      "source": "parrot_1080x1920",
+      "target_kbps": 2500,
+      "rendition": {
+        "width": 1080,
+        "height": 1920,
+        "fps": 29.97002997002997,
+        "duration": 11.868889,
+        "bitrate_kbps": 2446.7,
+        "codec": "h264",
+        "pix_fmt": "yuv420p",
+        "frames": null,
+        "delivery_url": "https://res.cloudinary.com/demo/video/upload/vc_h264,br_2500k:constant/docs/parrot.mp4",
+        "public_id": "docs/parrot"
+      },
+      "over_target": false,
+      "metrics": {
+        "vmaf": {
+          "mean": 84.4129,
+          "harmonic_mean": 84.1415,
+          "min": 74.2681,
+          "p1": 75.0639,
+          "p5": 77.1006,
+          "max": 100.0
+        },
+        "psnr_y": {
+          "mean": 39.5751,
+          "harmonic_mean": 39.5251,
+          "min": 37.0756,
+          "p1": 37.3823,
+          "p5": 37.6846,
+          "max": 43.9839
+        },
+        "ssim": {
+          "mean": 0.9891,
+          "harmonic_mean": 0.9891,
+          "min": 0.9788,
+          "p1": 0.9806,
+          "p5": 0.9825,
+          "max": 0.997
+        }
+      },
+      "frames_compared": 352
+    },
+    {
+      "provider": "cloudinary_h264_cbr",
+      "source": "parrot_1080x1920",
+      "target_kbps": 4500,
+      "rendition": {
+        "width": 1080,
+        "height": 1920,
+        "fps": 29.97002997002997,
+        "duration": 11.868889,
+        "bitrate_kbps": 4417.0,
+        "codec": "h264",
+        "pix_fmt": "yuv420p",
+        "frames": null,
+        "delivery_url": "https://res.cloudinary.com/demo/video/upload/vc_h264,br_4500k:constant/docs/parrot.mp4",
+        "public_id": "docs/parrot"
+      },
+      "over_target": false,
+      "metrics": {
+        "vmaf": {
+          "mean": 94.5941,
+          "harmonic_mean": 94.4856,
+          "min": 86.3436,
+          "p1": 87.2984,
+          "p5": 89.0898,
+          "max": 100.0
+        },
+        "psnr_y": {
+          "mean": 42.2697,
+          "harmonic_mean": 42.2291,
+          "min": 39.5181,
+          "p1": 39.9015,
+          "p5": 40.3284,
+          "max": 46.528
+        },
+        "ssim": {
+          "mean": 0.9951,
+          "harmonic_mean": 0.9951,
+          "min": 0.9896,
+          "p1": 0.9904,
+          "p5": 0.9917,
+          "max": 0.9986
+        }
+      },
+      "frames_compared": 352
+    },
+    {
+      "provider": "x264_medium_2pass",
+      "source": "parrot_1080x1920",
+      "target_kbps": 1000,
+      "rendition": {
+        "width": 1080,
+        "height": 1920,
+        "fps": 29.97002997002997,
+        "duration": 11.745067,
+        "bitrate_kbps": 1066.1,
+        "codec": "h264",
+        "pix_fmt": "yuv420p",
+        "frames": 352,
+        "command": "ffmpeg -hide_banner -nostdin -y -i parrot_1080x1920.mp4 -an -c:v libx264 -profile:v high -preset medium -b:v 1000k -maxrate 1500k -bufsize 2000k -pix_fmt yuv420p -pass 2 -passlogfile x264_medium_2pass_parrot_1080x1920_1000 x264_medium_2pass_parrot_1080x1920_1000k.mp4"
+      },
+      "over_target": false,
+      "metrics": {
+        "vmaf": {
+          "mean": 57.2194,
+          "harmonic_mean": 56.2768,
+          "min": 38.3832,
+          "p1": 41.6704,
+          "p5": 46.2604,
+          "max": 85.9893
+        },
+        "psnr_y": {
+          "mean": 34.8954,
+          "harmonic_mean": 34.8694,
+          "min": 32.874,
+          "p1": 33.1064,
+          "p5": 33.4607,
+          "max": 39.2529
+        },
+        "ssim": {
+          "mean": 0.9623,
+          "harmonic_mean": 0.9622,
+          "min": 0.9349,
+          "p1": 0.9429,
+          "p5": 0.9482,
+          "max": 0.9891
+        }
+      },
+      "frames_compared": 352
+    },
+    {
+      "provider": "x264_medium_2pass",
+      "source": "parrot_1080x1920",
+      "target_kbps": 2500,
+      "rendition": {
+        "width": 1080,
+        "height": 1920,
+        "fps": 29.97002997002997,
+        "duration": 11.745067,
+        "bitrate_kbps": 2584.7,
+        "codec": "h264",
+        "pix_fmt": "yuv420p",
+        "frames": 352,
+        "command": "ffmpeg -hide_banner -nostdin -y -i parrot_1080x1920.mp4 -an -c:v libx264 -profile:v high -preset medium -b:v 2500k -maxrate 3750k -bufsize 5000k -pix_fmt yuv420p -pass 2 -passlogfile x264_medium_2pass_parrot_1080x1920_2500 x264_medium_2pass_parrot_1080x1920_2500k.mp4"
+      },
+      "over_target": false,
+      "metrics": {
+        "vmaf": {
+          "mean": 86.1886,
+          "harmonic_mean": 85.979,
+          "min": 73.4238,
+          "p1": 76.1601,
+          "p5": 79.5032,
+          "max": 100.0
+        },
+        "psnr_y": {
+          "mean": 39.9392,
+          "harmonic_mean": 39.9186,
+          "min": 37.6362,
+          "p1": 37.978,
+          "p5": 38.5073,
+          "max": 45.2267
+        },
+        "ssim": {
+          "mean": 0.9905,
+          "harmonic_mean": 0.9905,
+          "min": 0.983,
+          "p1": 0.9845,
+          "p5": 0.987,
+          "max": 0.9977
+        }
+      },
+      "frames_compared": 352
+    },
+    {
+      "provider": "x264_medium_2pass",
+      "source": "parrot_1080x1920",
+      "target_kbps": 4500,
+      "rendition": {
+        "width": 1080,
+        "height": 1920,
+        "fps": 29.97002997002997,
+        "duration": 11.745067,
+        "bitrate_kbps": 4595.7,
+        "codec": "h264",
+        "pix_fmt": "yuv420p",
+        "frames": 352,
+        "command": "ffmpeg -hide_banner -nostdin -y -i parrot_1080x1920.mp4 -an -c:v libx264 -profile:v high -preset medium -b:v 4500k -maxrate 6750k -bufsize 9000k -pix_fmt yuv420p -pass 2 -passlogfile x264_medium_2pass_parrot_1080x1920_4500 x264_medium_2pass_parrot_1080x1920_4500k.mp4"
+      },
+      "over_target": false,
+      "metrics": {
+        "vmaf": {
+          "mean": 95.9757,
+          "harmonic_mean": 95.8649,
+          "min": 87.7525,
+          "p1": 88.6234,
+          "p5": 90.0523,
+          "max": 100.0
+        },
+        "psnr_y": {
+          "mean": 42.8941,
+          "harmonic_mean": 42.8648,
+          "min": 40.1223,
+          "p1": 40.3591,
+          "p5": 41.1756,
+          "max": 47.357
+        },
+        "ssim": {
+          "mean": 0.996,
+          "harmonic_mean": 0.996,
+          "min": 0.9912,
+          "p1": 0.9931,
+          "p5": 0.9939,
+          "max": 0.9988
+        }
+      },
+      "frames_compared": 352
+    },
+    {
+      "provider": "x265_medium_2pass",
+      "source": "parrot_1080x1920",
+      "target_kbps": 1000,
+      "rendition": {
+        "width": 1080,
+        "height": 1920,
+        "fps": 29.97002997002997,
+        "duration": 11.745067,
+        "bitrate_kbps": 984.5,
+        "codec": "hevc",
+        "pix_fmt": "yuv420p",
+        "frames": 352,
+        "command": "ffmpeg -hide_banner -nostdin -y -i parrot_1080x1920.mp4 -an -c:v libx265 -tag:v hvc1 -preset medium -b:v 1000k -maxrate 1500k -bufsize 2000k -pix_fmt yuv420p -x265-params pass=2:stats=x265_medium_2pass_parrot_1080x1920_1000.log x265_medium_2pass_parrot_1080x1920_1000k.mp4"
+      },
+      "over_target": false,
+      "metrics": {
+        "vmaf": {
+          "mean": 76.9262,
+          "harmonic_mean": 76.6138,
+          "min": 64.6582,
+          "p1": 66.6677,
+          "p5": 69.18,
+          "max": 91.7104
+        },
+        "psnr_y": {
+          "mean": 38.2932,
+          "harmonic_mean": 38.2655,
+          "min": 35.8725,
+          "p1": 36.3446,
+          "p5": 36.7745,
+          "max": 41.7293
+        },
+        "ssim": {
+          "mean": 0.9831,
+          "harmonic_mean": 0.9831,
+          "min": 0.9716,
+          "p1": 0.975,
+          "p5": 0.9764,
+          "max": 0.9933
+        }
+      },
+      "frames_compared": 352
+    },
+    {
+      "provider": "x265_medium_2pass",
+      "source": "parrot_1080x1920",
+      "target_kbps": 2500,
+      "rendition": {
+        "width": 1080,
+        "height": 1920,
+        "fps": 29.97002997002997,
+        "duration": 11.745067,
+        "bitrate_kbps": 2473.7,
+        "codec": "hevc",
+        "pix_fmt": "yuv420p",
+        "frames": 352,
+        "command": "ffmpeg -hide_banner -nostdin -y -i parrot_1080x1920.mp4 -an -c:v libx265 -tag:v hvc1 -preset medium -b:v 2500k -maxrate 3750k -bufsize 5000k -pix_fmt yuv420p -x265-params pass=2:stats=x265_medium_2pass_parrot_1080x1920_2500.log x265_medium_2pass_parrot_1080x1920_2500k.mp4"
+      },
+      "over_target": false,
+      "metrics": {
+        "vmaf": {
+          "mean": 92.6317,
+          "harmonic_mean": 92.4874,
+          "min": 85.116,
+          "p1": 85.8565,
+          "p5": 87.0016,
+          "max": 100.0
+        },
+        "psnr_y": {
+          "mean": 41.7975,
+          "harmonic_mean": 41.777,
+          "min": 39.6177,
+          "p1": 39.7632,
+          "p5": 40.3988,
+          "max": 45.1191
+        },
+        "ssim": {
+          "mean": 0.9934,
+          "harmonic_mean": 0.9934,
+          "min": 0.9877,
+          "p1": 0.9904,
+          "p5": 0.9907,
+          "max": 0.9978
+        }
+      },
+      "frames_compared": 352
+    },
+    {
+      "provider": "x265_medium_2pass",
+      "source": "parrot_1080x1920",
+      "target_kbps": 4500,
+      "rendition": {
+        "width": 1080,
+        "height": 1920,
+        "fps": 29.97002997002997,
+        "duration": 11.745067,
+        "bitrate_kbps": 4429.3,
+        "codec": "hevc",
+        "pix_fmt": "yuv420p",
+        "frames": 352,
+        "command": "ffmpeg -hide_banner -nostdin -y -i parrot_1080x1920.mp4 -an -c:v libx265 -tag:v hvc1 -preset medium -b:v 4500k -maxrate 6750k -bufsize 9000k -pix_fmt yuv420p -x265-params pass=2:stats=x265_medium_2pass_parrot_1080x1920_4500.log x265_medium_2pass_parrot_1080x1920_4500k.mp4"
+      },
+      "over_target": false,
+      "metrics": {
+        "vmaf": {
+          "mean": 97.7885,
+          "harmonic_mean": 97.7347,
+          "min": 91.1716,
+          "p1": 92.3032,
+          "p5": 93.6138,
+          "max": 100.0
+        },
+        "psnr_y": {
+          "mean": 44.0315,
+          "harmonic_mean": 44.0145,
+          "min": 41.827,
+          "p1": 42.0122,
+          "p5": 42.7044,
+          "max": 47.2231
+        },
+        "ssim": {
+          "mean": 0.9965,
+          "harmonic_mean": 0.9965,
+          "min": 0.9932,
+          "p1": 0.9948,
+          "p5": 0.995,
+          "max": 0.9989
+        }
+      },
+      "frames_compared": 352
+    }
+  ]
+}

@@ -1,23 +1,83 @@
 {
-  "description": "Cloudinary on-the-fly bitrate transformations vs local two-pass x264/x265, all encoding the same originals hosted on Cloudinary's public demo cloud. Runs without any account.",
+  "description": "Cloudinary on-the-fly H.264 and H.265 bitrate transformations vs local two-pass x264/x265, all encoding the same originals hosted on Cloudinary's public demo cloud. Runs without any account.",
   "vmaf_model": "hd",
   "vmaf_subsample": 1,
-  "bitrates_kbps": [1000, 2500, 4500],
+  "bitrates_kbps": [
+    1000,
+    2500,
+    4500
+  ],
   "sources": [
-    {"id": "sea_turtle_1080p", "kind": "download", "url": "https://res.cloudinary.com/demo/video/upload/samples/sea-turtle.mp4"},
-    {"id": "bathroom_1080p", "kind": "download", "url": "https://res.cloudinary.com/demo/video/upload/docs/bathroom.mp4"},
-    {"id": "parrot_1080x1920", "kind": "download", "url": "https://res.cloudinary.com/demo/video/upload/docs/parrot.mp4"}
+    {
+      "id": "sea_turtle_1080p",
+      "kind": "download",
+      "url": "https://res.cloudinary.com/demo/video/upload/samples/sea-turtle.mp4"
+    },
+    {
+      "id": "bathroom_1080p",
+      "kind": "download",
+      "url": "https://res.cloudinary.com/demo/video/upload/docs/bathroom.mp4"
+    },
+    {
+      "id": "parrot_1080x1920",
+      "kind": "download",
+      "url": "https://res.cloudinary.com/demo/video/upload/docs/parrot.mp4"
+    }
   ],
   "providers": {
     "cloudinary_h264_vbr": {
-      "type": "cloudinary", "cloud_name": "demo", "video_codec": "h264", "bitrate_mode": "vbr",
-      "public_id_map": {"sea_turtle_1080p": "samples/sea-turtle", "bathroom_1080p": "docs/bathroom", "parrot_1080x1920": "docs/parrot"}
+      "type": "cloudinary",
+      "cloud_name": "demo",
+      "video_codec": "h264",
+      "bitrate_mode": "vbr",
+      "public_id_map": {
+        "sea_turtle_1080p": "samples/sea-turtle",
+        "bathroom_1080p": "docs/bathroom",
+        "parrot_1080x1920": "docs/parrot"
+      }
     },
     "cloudinary_h264_cbr": {
-      "type": "cloudinary", "cloud_name": "demo", "video_codec": "h264", "bitrate_mode": "constant",
-      "public_id_map": {"sea_turtle_1080p": "samples/sea-turtle", "bathroom_1080p": "docs/bathroom", "parrot_1080x1920": "docs/parrot"}
+      "type": "cloudinary",
+      "cloud_name": "demo",
+      "video_codec": "h264",
+      "bitrate_mode": "constant",
+      "public_id_map": {
+        "sea_turtle_1080p": "samples/sea-turtle",
+        "bathroom_1080p": "docs/bathroom",
+        "parrot_1080x1920": "docs/parrot"
+      }
     },
-    "x264_medium_2pass": {"type": "local_ffmpeg", "codec": "h264", "preset": "medium"},
-    "x265_medium_2pass": {"type": "local_ffmpeg", "codec": "h265", "preset": "medium"}
+    "cloudinary_h265_vbr": {
+      "type": "cloudinary",
+      "cloud_name": "demo",
+      "video_codec": "h265",
+      "bitrate_mode": "vbr",
+      "public_id_map": {
+        "sea_turtle_1080p": "samples/sea-turtle",
+        "bathroom_1080p": "docs/bathroom",
+        "parrot_1080x1920": "docs/parrot"
+      }
+    },
+    "cloudinary_h265_cbr": {
+      "type": "cloudinary",
+      "cloud_name": "demo",
+      "video_codec": "h265",
+      "bitrate_mode": "constant",
+      "public_id_map": {
+        "sea_turtle_1080p": "samples/sea-turtle",
+        "bathroom_1080p": "docs/bathroom",
+        "parrot_1080x1920": "docs/parrot"
+      }
+    },
+    "x264_medium_2pass": {
+      "type": "local_ffmpeg",
+      "codec": "h264",
+      "preset": "medium"
+    },
+    "x265_medium_2pass": {
+      "type": "local_ffmpeg",
+      "codec": "h265",
+      "preset": "medium"
+    }
   }
 }

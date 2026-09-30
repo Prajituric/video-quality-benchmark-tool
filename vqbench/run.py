@@ -75,6 +75,9 @@ def main(argv: list[str] | None = None) -> int:
     ap.add_argument("--keep-renditions", action="store_true", help="keep encoded/downloaded files (path is printed)")
     ap.add_argument("--workdir", type=Path, help="scratch directory for renditions (default: a short system temp dir)")
     ap.add_argument("--no-root-update", action="store_true", help="do not overwrite benchmark_results.json")
+    ap.add_argument("--merge", action="store_true",
+                    help="keep measurements of providers not run now from the current benchmark_results.json "
+                         "(same sources and bitrates required)")
     args = ap.parse_args(argv)
 
     config_text = args.config.read_text()
@@ -123,6 +126,18 @@ def main(argv: list[str] | None = None) -> int:
                     print(f"      ERROR {entry['error']}", flush=True)
                 measurements.append(entry)
 
+    provider_specs = [p.describe() for p in providers]
+    merged_from = None
+    root_file = ROOT / "benchmark_results.json"
+    if args.merge and root_file.exists():
+        previous = json.loads(root_file.read_text())
+        if [s["sha256"] for s in previous["sources"]] != [s["sha256"] for s in sources]                 or previous["bitrates_kbps"] != config["bitrates_kbps"]:
+            sys.exit("--merge: previous run used different sources or bitrates")
+        ran = {p.name for p in providers}
+        measurements = [m for m in previous["measurements"] if m["provider"] not in ran] + measurements
+        provider_specs = [p for p in previous["providers"] if p["provider"] not in ran] + provider_specs
+        merged_from = previous["run_id"]
+
     record = {
         "schema": "vqbench/result@1",
         "run_id": run_id,
@@ -140,7 +155,8 @@ def main(argv: list[str] | None = None) -> int:
         "description": config.get("description", ""),
         "sources": sources,
         "reference": {"note": "each source file is both the VMAF reference and the input every provider encodes"},
-        "providers": [p.describe() for p in providers],
+        "merged_from_run": merged_from,
+        "providers": provider_specs,
         "bitrates_kbps": config["bitrates_kbps"],
         "summary": summarise(measurements),
         "measurements": measurements,

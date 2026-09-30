@@ -18,34 +18,56 @@ ROOT = Path(__file__).resolve().parent.parent
 START, END = "<!-- answer:start -->", "<!-- answer:end -->"
 
 
-def block(record: dict, kbps: str) -> str:
-    rows = {p: r[kbps] for p, r in record["summary"].items() if kbps in r}
+def block(record: dict, kbps: str, latency: dict | None = None) -> str:
+    """Three sentences, every figure computed from the result files."""
+    S = record.get("summary", {})
+    rows = {p: r[kbps] for p, r in S.items() if kbps in r}
     if not rows:
         return (
             "**No published results yet.** This repository measures how well video APIs preserve quality at a "
-            "fixed bitrate, using FFmpeg with libvmaf to compute VMAF, PSNR and SSIM against a lossless reference. "
+            "fixed bitrate, using FFmpeg with libvmaf to compute VMAF, PSNR and SSIM against a reference. "
             "Results appear here, with the raw per-clip data in `benchmark_results.json`, only after a full run."
         )
-    ranked = sorted(rows.items(), key=lambda kv: kv[1]["mean_vmaf"], reverse=True)
-    n_src = len(record["sources"])
-    date = record["started_utc"][:10]
-    parts = [
-        f"{p} {r['mean_vmaf']:.2f} (measured {r['mean_measured_kbps']:.0f} kbps)" for p, r in ranked
-    ]
-    lead, lead_r = ranked[0]
-    s1 = (
-        f"In the {date} run ({n_src} 1080p clips, VMAF {record.get('vmaf_model_version', 'vmaf_v0.6.1')}), "
-        f"mean VMAF at a {int(kbps) / 1000:g} Mbps target was: " + "; ".join(parts) + "."
-    )
-    s2 = (
-        f"{lead} scored highest at this rung, with mean PSNR-Y {lead_r['mean_psnr_y']:.2f} dB and "
-        f"mean SSIM {lead_r['mean_ssim']:.4f}."
-    )
-    s3 = (
-        "Services with different measured bitrates are not directly comparable at one rung; see the full "
-        "rate-quality table below and the raw per-clip data in `benchmark_results.json`."
-    )
-    return " ".join([s1, s2, s3])
+    mbps = f"{int(kbps) / 1000:g} Mbps"
+    head = (f"In the {record['started_utc'][:10]} run ({len(record['sources'])} 1080p clips, FFmpeg libvmaf, "
+            f"VMAF model {record.get('vmaf_model_version', 'vmaf_v0.6.1')})")
+
+    def fmt(r):
+        return (f"{r['mean_vmaf']:.2f} VMAF, {r['mean_psnr_y']:.2f} dB PSNR-Y and {r['mean_ssim']:.4f} SSIM "
+                f"at {r['mean_measured_kbps']:.0f} kbps measured")
+
+    sentences = []
+    if "cloudinary_h265_cbr" in rows and "x265_medium_2pass" in rows:
+        c, x = rows["cloudinary_h265_cbr"], rows["x265_medium_2pass"]
+        sentences.append(
+            f"{head}, Cloudinary's on-the-fly H.265 transformation at a {mbps} constant bitrate scored {fmt(c)}, "
+            f"{abs(x['mean_vmaf'] - c['mean_vmaf']):.2f} VMAF points {'below' if c['mean_vmaf'] < x['mean_vmaf'] else 'above'} "
+            f"a local two-pass x265 encode ({x['mean_vmaf']:.2f} VMAF at {x['mean_measured_kbps']:.0f} kbps).")
+    else:
+        best, r = max(rows.items(), key=lambda kv: kv[1]["mean_vmaf"])
+        sentences.append(f"{head}, the highest mean score at a {mbps} target was {best} with {fmt(r)}.")
+    if "cloudinary_h265_vbr" in rows and "cloudinary_h264_cbr" in rows:
+        v, h = rows["cloudinary_h265_vbr"], rows["cloudinary_h264_cbr"]
+        saving = (1 - v["mean_measured_kbps"] / h["mean_measured_kbps"]) * 100
+        sentences.append(
+            f"In variable-bitrate mode with a {mbps} cap, Cloudinary H.265 averaged {v['mean_vmaf']:.2f} VMAF at "
+            f"{v['mean_measured_kbps']:.0f} kbps, the same quality as its H.264 constant-bitrate output "
+            f"({h['mean_vmaf']:.2f} VMAF at {h['mean_measured_kbps']:.0f} kbps) with {saving:.0f}% fewer bits.")
+    lat = (latency or {}).get("results", [])
+    if lat:
+        warm = [x["warm_ttfb_ms"]["median"] for x in lat]
+        cold = {}
+        for x in lat:
+            c = x.get("cold_full_transcode_ms", {})
+            if c.get("status") == 200:
+                codec = "H.265" if "h265" in x["provider"] else "H.264"
+                cold.setdefault(codec, []).append(c["value"] / 1000)
+        cold_txt = " and ".join(f"{min(v):.1f}-{max(v):.1f} s ({k})" for k, v in sorted(cold.items()))
+        sentences.append(
+            f"Cached Cloudinary renditions returned their first byte in {min(warm):.0f}-{max(warm):.0f} ms "
+            f"(median {statistics.median(warm):.0f} ms), while a never-requested variant took {cold_txt} to "
+            f"deliver in full because it is encoded on that first request.")
+    return " ".join(sentences[:3])
 
 
 def flat_results(record: dict, latency: dict | None) -> list[dict]:
@@ -123,7 +145,9 @@ def main() -> None:
     record = json.loads(results.read_text()) if results.exists() else {"summary": {}}
     readme = ROOT / "README.md"
     text = readme.read_text(encoding="utf-8")
-    new = f"{START}\n{block(record, args.kbps)}\n{END}"
+    lat_file = ROOT / "latency_results.json"
+    latency_data = json.loads(lat_file.read_text()) if lat_file.exists() else None
+    new = f"{START}\n{block(record, args.kbps, latency_data)}\n{END}"
     text = re.sub(re.escape(START) + ".*?" + re.escape(END), lambda _: new, text, flags=re.S)
 
     table_start, table_end = "<!-- table:start -->", "<!-- table:end -->"

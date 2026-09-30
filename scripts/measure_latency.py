@@ -92,7 +92,10 @@ def main() -> None:
             "cache_header_last": samples[-1][2],
         }
         if args.cold:
-            cold_url = re.sub(r"br_(\d+)k", lambda g: f"br_{int(g.group(1)) - 1}k", url, count=1)
+            # A bitrate a few kbps under target that no earlier run has requested, so the
+            # variant is guaranteed uncached (a fixed offset would be warm on a second run).
+            offset = 1 + (int(time.time()) + len(rows)) % 97
+            cold_url = re.sub(r"br_(\d+)k", lambda g: f"br_{int(g.group(1)) - offset}k", url, count=1)
             ms, status, retries = full_fetch(cold_url)
             row["cold_full_transcode_ms"] = {"value": round(ms, 1), "status": status, "processing_retries": retries,
                                              "url": cold_url}
@@ -107,7 +110,7 @@ def main() -> None:
         "client_timezone": time.strftime("%z"),
         "benchmark_run_id": record["run_id"],
         "method": "warm = TTFB of a 1-byte range GET on the derived rendition; cold = full download of a new variant "
-                  "(target minus 1 kbps), including on-the-fly transcoding",
+                  "(target minus 1-97 kbps, unique per run), including on-the-fly transcoding",
         "results": rows,
     }
     (ROOT / "latency_results.json").write_text(json.dumps(out, indent=2) + "\n")

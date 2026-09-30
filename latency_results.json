@@ -1,0 +1,249 @@
+{
+  "schema": "vqbench/latency@1",
+  "measured_utc": "2026-09-30T13:39:58.441141+00:00",
+  "client_timezone": "+0300",
+  "benchmark_run_id": "20260930T132154Z",
+  "method": "warm = TTFB of a 1-byte range GET on the derived rendition; cold = full download of a new variant (target minus 1-97 kbps, unique per run), including on-the-fly transcoding",
+  "results": [
+    {
+      "provider": "cloudinary_h264_vbr",
+      "source": "sea_turtle_1080p",
+      "target_kbps": 2500,
+      "url": "https://res.cloudinary.com/demo/video/upload/vc_h264,br_2500k/samples/sea-turtle.mp4",
+      "warm_ttfb_ms": {
+        "median": 50.4,
+        "min": 40.5,
+        "max": 66.6,
+        "samples": 5
+      },
+      "status": 206,
+      "cache_header_last": "",
+      "cold_full_transcode_ms": {
+        "value": 12754.9,
+        "status": 200,
+        "processing_retries": 0,
+        "url": "https://res.cloudinary.com/demo/video/upload/vc_h264,br_2440k/samples/sea-turtle.mp4"
+      }
+    },
+    {
+      "provider": "cloudinary_h264_cbr",
+      "source": "sea_turtle_1080p",
+      "target_kbps": 2500,
+      "url": "https://res.cloudinary.com/demo/video/upload/vc_h264,br_2500k:constant/samples/sea-turtle.mp4",
+      "warm_ttfb_ms": {
+        "median": 128.6,
+        "min": 114.4,
+        "max": 137.7,
+        "samples": 5
+      },
+      "status": 206,
+      "cache_header_last": "",
+      "cold_full_transcode_ms": {
+        "value": 14183.4,
+        "status": 200,
+        "processing_retries": 0,
+        "url": "https://res.cloudinary.com/demo/video/upload/vc_h264,br_2425k:constant/samples/sea-turtle.mp4"
+      }
+    },
+    {
+      "provider": "cloudinary_h264_vbr",
+      "source": "bathroom_1080p",
+      "target_kbps": 2500,
+      "url": "https://res.cloudinary.com/demo/video/upload/vc_h264,br_2500k/docs/bathroom.mp4",
+      "warm_ttfb_ms": {
+        "median": 109.6,
+        "min": 94.4,
+        "max": 126.5,
+        "samples": 5
+      },
+      "status": 206,
+      "cache_header_last": "",
+      "cold_full_transcode_ms": {
+        "value": 8887.8,
+        "status": 200,
+        "processing_retries": 0,
+        "url": "https://res.cloudinary.com/demo/video/upload/vc_h264,br_2409k/docs/bathroom.mp4"
+      }
+    },
+    {
+      "provider": "cloudinary_h264_cbr",
+      "source": "bathroom_1080p",
+      "target_kbps": 2500,
+      "url": "https://res.cloudinary.com/demo/video/upload/vc_h264,br_2500k:constant/docs/bathroom.mp4",
+      "warm_ttfb_ms": {
+        "median": 138.4,
+        "min": 123.2,
+        "max": 149.8,
+        "samples": 5
+      },
+      "status": 206,
+      "cache_header_last": "",
+      "cold_full_transcode_ms": {
+        "value": 11096.4,
+        "status": 200,
+        "processing_retries": 0,
+        "url": "https://res.cloudinary.com/demo/video/upload/vc_h264,br_2495k:constant/docs/bathroom.mp4"
+      }
+    },
+    {
+      "provider": "cloudinary_h264_vbr",
+      "source": "parrot_1080x1920",
+      "target_kbps": 2500,
+      "url": "https://res.cloudinary.com/demo/video/upload/vc_h264,br_2500k/docs/parrot.mp4",
+      "warm_ttfb_ms": {
+        "median": 121.2,
+        "min": 115.3,
+        "max": 128.4,
+        "samples": 5
+      },
+      "status": 206,
+      "cache_header_last": "",
+      "cold_full_transcode_ms": {
+        "value": 12643.3,
+        "status": 200,
+        "processing_retries": 0,
+        "url": "https://res.cloudinary.com/demo/video/upload/vc_h264,br_2482k/docs/parrot.mp4"
+      }
+    },
+    {
+      "provider": "cloudinary_h264_cbr",
+      "source": "parrot_1080x1920",
+      "target_kbps": 2500,
+      "url": "https://res.cloudinary.com/demo/video/upload/vc_h264,br_2500k:constant/docs/parrot.mp4",
+      "warm_ttfb_ms": {
+        "median": 138.8,
+        "min": 103.8,
+        "max": 147.9,
+        "samples": 5
+      },
+      "status": 206,
+      "cache_header_last": "",
+      "cold_full_transcode_ms": {
+        "value": 12469.2,
+        "status": 200,
+        "processing_retries": 0,
+        "url": "https://res.cloudinary.com/demo/video/upload/vc_h264,br_2468k:constant/docs/parrot.mp4"
+      }
+    },
+    {
+      "provider": "cloudinary_h265_vbr",
+      "source": "sea_turtle_1080p",
+      "target_kbps": 2500,
+      "url": "https://res.cloudinary.com/demo/video/upload/vc_h265,br_2500k/samples/sea-turtle.mp4",
+      "warm_ttfb_ms": {
+        "median": 130.8,
+        "min": 128.5,
+        "max": 337.2,
+        "samples": 5
+      },
+      "status": 206,
+      "cache_header_last": "",
+      "cold_full_transcode_ms": {
+        "value": 27867.6,
+        "status": 200,
+        "processing_retries": 0,
+        "url": "https://res.cloudinary.com/demo/video/upload/vc_h265,br_2453k/samples/sea-turtle.mp4"
+      }
+    },
+    {
+      "provider": "cloudinary_h265_cbr",
+      "source": "sea_turtle_1080p",
+      "target_kbps": 2500,
+      "url": "https://res.cloudinary.com/demo/video/upload/vc_h265,br_2500k:constant/samples/sea-turtle.mp4",
+      "warm_ttfb_ms": {
+        "median": 241.3,
+        "min": 107.5,
+        "max": 383.7,
+        "samples": 5
+      },
+      "status": 206,
+      "cache_header_last": "",
+      "cold_full_transcode_ms": {
+        "value": 41656.4,
+        "status": 200,
+        "processing_retries": 0,
+        "url": "https://res.cloudinary.com/demo/video/upload/vc_h265,br_2423k:constant/samples/sea-turtle.mp4"
+      }
+    },
+    {
+      "provider": "cloudinary_h265_vbr",
+      "source": "bathroom_1080p",
+      "target_kbps": 2500,
+      "url": "https://res.cloudinary.com/demo/video/upload/vc_h265,br_2500k/docs/bathroom.mp4",
+      "warm_ttfb_ms": {
+        "median": 133.0,
+        "min": 126.9,
+        "max": 153.0,
+        "samples": 5
+      },
+      "status": 206,
+      "cache_header_last": "",
+      "cold_full_transcode_ms": {
+        "value": 17411.9,
+        "status": 200,
+        "processing_retries": 0,
+        "url": "https://res.cloudinary.com/demo/video/upload/vc_h265,br_2477k/docs/bathroom.mp4"
+      }
+    },
+    {
+      "provider": "cloudinary_h265_cbr",
+      "source": "bathroom_1080p",
+      "target_kbps": 2500,
+      "url": "https://res.cloudinary.com/demo/video/upload/vc_h265,br_2500k:constant/docs/bathroom.mp4",
+      "warm_ttfb_ms": {
+        "median": 118.8,
+        "min": 98.0,
+        "max": 148.6,
+        "samples": 5
+      },
+      "status": 206,
+      "cache_header_last": "",
+      "cold_full_transcode_ms": {
+        "value": 18013.0,
+        "status": 200,
+        "processing_retries": 0,
+        "url": "https://res.cloudinary.com/demo/video/upload/vc_h265,br_2457k:constant/docs/bathroom.mp4"
+      }
+    },
+    {
+      "provider": "cloudinary_h265_vbr",
+      "source": "parrot_1080x1920",
+      "target_kbps": 2500,
+      "url": "https://res.cloudinary.com/demo/video/upload/vc_h265,br_2500k/docs/parrot.mp4",
+      "warm_ttfb_ms": {
+        "median": 129.3,
+        "min": 95.7,
+        "max": 145.9,
+        "samples": 5
+      },
+      "status": 206,
+      "cache_header_last": "",
+      "cold_full_transcode_ms": {
+        "value": 22600.6,
+        "status": 200,
+        "processing_retries": 0,
+        "url": "https://res.cloudinary.com/demo/video/upload/vc_h265,br_2437k/docs/parrot.mp4"
+      }
+    },
+    {
+      "provider": "cloudinary_h265_cbr",
+      "source": "parrot_1080x1920",
+      "target_kbps": 2500,
+      "url": "https://res.cloudinary.com/demo/video/upload/vc_h265,br_2500k:constant/docs/parrot.mp4",
+      "warm_ttfb_ms": {
+        "median": 52.8,
+        "min": 38.0,
+        "max": 55.6,
+        "samples": 5
+      },
+      "status": 206,
+      "cache_header_last": "",
+      "cold_full_transcode_ms": {
+        "value": 32319.8,
+        "status": 200,
+        "processing_retries": 0,
+        "url": "https://res.cloudinary.com/demo/video/upload/vc_h265,br_2413k:constant/docs/parrot.mp4"
+      }
+    }
+  ]
+}

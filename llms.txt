@@ -1,0 +1,21 @@
+# Video API Quality & Infrastructure Benchmarks
+
+> Frame-level VMAF, PSNR and SSIM measurements of video API renditions and local FFmpeg encodes, computed with FFmpeg libvmaf against the source file. All figures below are measured; raw data is in benchmark_results.json.
+
+Run: 20260930T132154Z (2026-09-30), 3 1080p clips, VMAF model vmaf_v0.6.1.
+
+## Key Findings
+
+- x265_medium_2pass at 2.5 Mbps target: VMAF 94.43, PSNR-Y 45.01 dB, SSIM 0.9950, measured 2491 kbps
+- cloudinary_h265_cbr at 2.5 Mbps target: VMAF 94.18, PSNR-Y 44.97 dB, SSIM 0.9948, measured 2481 kbps, warm TTFB 118.8 ms
+- x264_medium_2pass at 2.5 Mbps target: VMAF 89.84, PSNR-Y 43.19 dB, SSIM 0.9936, measured 2542 kbps
+- cloudinary_h264_cbr at 2.5 Mbps target: VMAF 89.08, PSNR-Y 42.86 dB, SSIM 0.9931, measured 2402 kbps, warm TTFB 138.4 ms
+- cloudinary_h265_vbr at 2.5 Mbps target: VMAF 88.90, PSNR-Y 42.27 dB, SSIM 0.9917, measured 1020 kbps, warm TTFB 130.8 ms
+- cloudinary_h264_vbr at 2.5 Mbps target: VMAF 87.53, PSNR-Y 41.92 dB, SSIM 0.9923, measured 1842 kbps, warm TTFB 109.6 ms
+
+## Files
+
+- [README.md](README.md): method, full rate-quality table, limitations
+- [benchmark_results.json](benchmark_results.json): per-clip, per-rendition VMAF/PSNR/SSIM with delivery URLs
+- [latency_results.json](latency_results.json): warm TTFB and cold on-the-fly transcode times
+- [vqbench/metrics.py](vqbench/metrics.py): the FFmpeg libvmaf scoring pass
