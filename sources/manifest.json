@@ -1,0 +1,20 @@
+[
+  {
+    "id": "sea_turtle_1080p",
+    "path": "sources/sea_turtle_1080p.mp4",
+    "sha256": "8f93f5ec1d44f26cf729f8b94cba12a37666e4ae5045b228abcf7e3aca1e7386",
+    "origin": "https://res.cloudinary.com/demo/video/upload/samples/sea-turtle.mp4"
+  },
+  {
+    "id": "bathroom_1080p",
+    "path": "sources/bathroom_1080p.mp4",
+    "sha256": "22e9b561dbeb05d6936736785b6c8fb540ebb71c6fb71a5d8b1575fddbd4e40c",
+    "origin": "https://res.cloudinary.com/demo/video/upload/docs/bathroom.mp4"
+  },
+  {
+    "id": "parrot_1080x1920",
+    "path": "sources/parrot_1080x1920.mp4",
+    "sha256": "8c7f74caea088935890115617e66f70ee72b5f45528b82e1346f2a0b801e1d2d",
+    "origin": "https://res.cloudinary.com/demo/video/upload/docs/parrot.mp4"
+  }
+]

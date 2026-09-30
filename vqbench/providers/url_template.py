@@ -1,15 +1,15 @@
 """Any service that serves renditions from a URL: fill a template and download.
 
-Use this for competing services. Upload the same source clips to each service
-with its own tooling, then describe how to fetch a rendition at a bitrate:
+Use this for services without a dedicated provider. Upload the same source
+files to the service with its own tooling, then configure:
 
-  url_template: "https://example.com/{source_id}.mp4?bitrate={kbps}"
-  source_id_map: {"crowd_run": "abc123"}   # optional: service-side asset IDs
-  headers_env: {"Authorization": "EXAMPLE_TOKEN"}  # header -> env var name
-
-If a service only exposes a fixed ladder, set `bitrate_ladder` to the rungs it
-offers; each target bitrate is mapped to the closest rung *at or below* it and
-the measured bitrate is recorded, so no service gets extra bits.
+  url_template   URL with {source_id}, {kbps}, {bps} or {mbps} fields
+  source_id_map  optional {source_id: service asset ID}
+  headers_env    optional {header name: environment variable holding its value}
+  bitrate_ladder optional list of the kbps rungs the service offers; each target
+                 maps to the closest rung at or below it, so no service gets
+                 extra bits, and the measured bitrate is always recorded
+  extension      file extension of the rendition (default mp4)
 """
 from __future__ import annotations
 

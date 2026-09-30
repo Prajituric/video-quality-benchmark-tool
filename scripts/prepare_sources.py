@@ -1,5 +1,8 @@
 #!/usr/bin/env python3
-"""Fetch the Xiph.org test clips listed in the config and make lossless mezzanines.
+"""Fetch the source clips listed in the config.
+
+Sources with "kind": "download" are stored byte-for-byte. Other sources are
+Xiph.org sequences turned into lossless mezzanines:
 
 Each clip is streamed from media.xiph.org (only the frames needed are read),
 trimmed, and stored as lossless H.264 (qp 0, yuv420p) under sources/. That
@@ -15,6 +18,7 @@ import hashlib
 import json
 import subprocess
 import sys
+import urllib.request
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -30,6 +34,16 @@ def sha256(path: Path) -> str:
 
 def prepare(src: dict, out_dir: Path) -> dict:
     out = out_dir / f"{src['id']}.mp4"
+    if src.get("kind") == "download":
+        # Use the file byte-for-byte as the reference (e.g. an original already
+        # hosted on a service, so the service and local encoders share one input).
+        if not out.exists():
+            print(f"[download] {src['id']}: {src['url']}", flush=True)
+            req = urllib.request.Request(src["url"], headers={"User-Agent": "video-quality-benchmark-tool/1.0"})
+            with urllib.request.urlopen(req, timeout=600) as resp, open(out, "wb") as fh:
+                while chunk := resp.read(1 << 20):
+                    fh.write(chunk)
+        return {"id": src["id"], "path": out.relative_to(ROOT).as_posix(), "sha256": sha256(out), "origin": src["url"]}
     if not out.exists():
         cmd = [
             "ffmpeg", "-hide_banner", "-nostdin", "-y",

@@ -22,7 +22,7 @@ from dataclasses import asdict
 from pathlib import Path
 
 from . import __version__
-from .metrics import MetricsError, measure, probe, require_ffmpeg
+from .metrics import VMAF_MODELS, MetricsError, measure, probe, require_ffmpeg
 from .providers import ProviderError, build
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -136,8 +136,10 @@ def main(argv: list[str] | None = None) -> int:
         },
         "config_sha256": hashlib.sha256(config_text.encode()).hexdigest(),
         "vmaf_model": config.get("vmaf_model", "hd"),
+        "vmaf_model_version": VMAF_MODELS[config.get("vmaf_model", "hd")],
+        "description": config.get("description", ""),
         "sources": sources,
-        "reference": {"note": "lossless H.264 mezzanine; also the file uploaded to each service"},
+        "reference": {"note": "each source file is both the VMAF reference and the input every provider encodes"},
         "providers": [p.describe() for p in providers],
         "bitrates_kbps": config["bitrates_kbps"],
         "summary": summarise(measurements),

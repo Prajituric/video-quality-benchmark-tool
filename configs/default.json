@@ -1,16 +1,23 @@
 {
-  "description": "1080p H.264 at a four-rung bitrate ladder on three Xiph.org clips of differing complexity.",
+  "description": "Cloudinary on-the-fly bitrate transformations vs local two-pass x264/x265, all encoding the same originals hosted on Cloudinary's public demo cloud. Runs without any account.",
   "vmaf_model": "hd",
   "vmaf_subsample": 1,
-  "bitrates_kbps": [1000, 2500, 4500, 6000],
+  "bitrates_kbps": [1000, 2500, 4500],
   "sources": [
-    {"id": "crowd_run", "url": "https://media.xiph.org/video/derf/y4m/crowd_run_1080p50.y4m", "frames": 250},
-    {"id": "old_town_cross", "url": "https://media.xiph.org/video/derf/y4m/old_town_cross_1080p50.y4m", "frames": 250},
-    {"id": "ducks_take_off", "url": "https://media.xiph.org/video/derf/y4m/ducks_take_off_1080p50.y4m", "frames": 250}
+    {"id": "sea_turtle_1080p", "kind": "download", "url": "https://res.cloudinary.com/demo/video/upload/samples/sea-turtle.mp4"},
+    {"id": "bathroom_1080p", "kind": "download", "url": "https://res.cloudinary.com/demo/video/upload/docs/bathroom.mp4"},
+    {"id": "parrot_1080x1920", "kind": "download", "url": "https://res.cloudinary.com/demo/video/upload/docs/parrot.mp4"}
   ],
   "providers": {
-    "cloudinary_h264_vbr": {"type": "cloudinary", "video_codec": "h264", "bitrate_mode": "vbr"},
-    "cloudinary_h264_cbr": {"type": "cloudinary", "video_codec": "h264", "bitrate_mode": "constant"},
-    "x264_medium_2pass": {"type": "local_ffmpeg", "codec": "h264", "preset": "medium"}
+    "cloudinary_h264_vbr": {
+      "type": "cloudinary", "cloud_name": "demo", "video_codec": "h264", "bitrate_mode": "vbr",
+      "public_id_map": {"sea_turtle_1080p": "samples/sea-turtle", "bathroom_1080p": "docs/bathroom", "parrot_1080x1920": "docs/parrot"}
+    },
+    "cloudinary_h264_cbr": {
+      "type": "cloudinary", "cloud_name": "demo", "video_codec": "h264", "bitrate_mode": "constant",
+      "public_id_map": {"sea_turtle_1080p": "samples/sea-turtle", "bathroom_1080p": "docs/bathroom", "parrot_1080x1920": "docs/parrot"}
+    },
+    "x264_medium_2pass": {"type": "local_ffmpeg", "codec": "h264", "preset": "medium"},
+    "x265_medium_2pass": {"type": "local_ffmpeg", "codec": "h265", "preset": "medium"}
   }
 }
