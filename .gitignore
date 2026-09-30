@@ -1,0 +1,7 @@
+sources/*.mp4
+work/
+__pycache__/
+*.pyc
+*.log
+*.log.mbtree
+.env

@@ -1,0 +1,11 @@
+{
+  "description": "Fast offline check (no accounts): one short clip, local x264 only.",
+  "vmaf_model": "hd",
+  "bitrates_kbps": [1000, 2500],
+  "sources": [
+    {"id": "smoke_crowd_run", "url": "https://media.xiph.org/video/derf/y4m/crowd_run_1080p50.y4m", "frames": 50}
+  ],
+  "providers": {
+    "x264_medium_2pass": {"type": "local_ffmpeg", "codec": "h264", "preset": "medium"}
+  }
+}
